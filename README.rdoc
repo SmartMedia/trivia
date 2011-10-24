@@ -1,6 +1,6 @@
 = trivia
 
-Description goes here.
+Models for simple quiz
 
 == Contributing to trivia
  
