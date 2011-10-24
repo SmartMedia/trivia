@@ -6,12 +6,22 @@ ActiveRecord::Base.establish_connection(
 ActiveRecord::Migration.verbose = false
 
 ActiveRecord::Schema.define do
+  create_table :answers, :force => true do |t|
+    t.string :answer
+    t.boolean :right, :default => false
+    t.references :question
+  end
+
   create_table :questions, :force => true do |t|
     t.string :question, :null => false
     t.integer :points, :default => 0, :null => false
-    t.datetime 'published_from'
-    t.datetime 'published_to'
+    t.datetime :published_from
+    t.datetime :published_to
   end
+end
+
+class Answer < ActiveRecord::Base
+  include Trivia::Answer
 end
 
 class Question < ActiveRecord::Base
