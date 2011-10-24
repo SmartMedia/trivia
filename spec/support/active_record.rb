@@ -6,6 +6,17 @@ ActiveRecord::Base.establish_connection(
 ActiveRecord::Migration.verbose = false
 
 ActiveRecord::Schema.define do
+  create_table :users, :force => true do |t|
+    t.string :name
+  end
+
+  create_table :chosen_answers, :force => true do |t|
+    t.references :user
+    t.references :answer
+    t.references :question
+    t.integer :points
+  end
+
   create_table :answers, :force => true do |t|
     t.string :answer
     t.boolean :right, :default => false
@@ -18,6 +29,14 @@ ActiveRecord::Schema.define do
     t.datetime :published_from
     t.datetime :published_to
   end
+end
+
+class User < ActiveRecord::Base
+  acts_as_trivia_user
+end
+
+class ChosenAnswer < ActiveRecord::Base
+  include Trivia::ChosenAnswer
 end
 
 class Answer < ActiveRecord::Base
