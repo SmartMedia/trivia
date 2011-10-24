@@ -63,4 +63,29 @@ describe Trivia::Question do
       question.valid?.should be_true
     end
   end
+
+  context "when adding answers" do
+    it "should have answers" do
+      question = Question.create(:question => 'Is this the real life? Is this just fantasy?')
+      first = Answer.create(:answer => 'Caught in the landslide', :question => question)
+      second = Answer.create(:answer => 'No escape from reality', :question => question)
+
+      question.answers.should =~ [first, second]
+    end
+  end
+
+  context "when destroyed" do
+    it "should destroy all it's answers" do
+      question = Question.create(:question => 'Can you tell a green field?')
+      first = Answer.create(:answer => 'From a cold steel rail?', :question => question)
+      second = Answer.create(:answer => 'A smile from a veil?', :question => question)
+      third = Answer.create(:answer => 'Wish you were here', :question => question, :right => true)
+
+      Answer.find_all_by_id([first, second, third].map(&:id)).count.should == 3
+
+      question.destroy
+
+      Answer.find_all_by_id([first, second, third].map(&:id)).count.should == 0
+    end
+  end
 end
