@@ -14,6 +14,7 @@ group :development do
   gem "libnotify"
 
   gem "rspec", "~> 2.5.0"
+  gem "generator_spec"
   gem "bundler", "~> 1.0.0"
   gem "jeweler", "~> 1.6.4"
   gem "rcov", ">= 0"
