@@ -9,10 +9,10 @@ module Trivia
       validate :validate_published_to
 
       t = self.arel_table
-      scope :active, where(t[:published_from].lt(Time.now.to_s(:db)).or(t[:published_from].eq(nil)))
-                           .where(t[:published_to].gt(Time.now.to_s(:db)).or(t[:published_to].eq(nil)))
+      scope :active, lambda {where(t[:published_from].lt(Time.now.to_s(:db)).or(t[:published_from].eq(nil)))
+                           .where(t[:published_to].gt(Time.now.to_s(:db)).or(t[:published_to].eq(nil)))}
 
-      scope :inactive, where('published_to < ?', Time.now.to_s(:db))
+      scope :inactive, lambda{where('published_to < ?', Time.now.to_s(:db))}
     end
 
     module ClassMethods
