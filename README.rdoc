@@ -2,6 +2,27 @@
 
 Models for simple quiz
 
+== Installation
+
+Add to your Gemfile
+
+ gem 'trivia'
+
+Run generator
+
+ rails generate trivia:install
+
+Run migrations
+
+ rake db:migrate
+
+Finally add 'acts_as_trivia_user' to your model:
+
+ class User < ActiveRecord:Base
+  acts_as_trivia_user
+  # ...
+ end
+
 == Contributing to trivia
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
