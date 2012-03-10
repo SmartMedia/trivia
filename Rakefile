@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary = %Q{Models for simple quiz}
   gem.description = %Q{Add simple quiz to your app and let users earn points}
   gem.email = "dupal.j@gmail.com"
-  gem.authors = ["Jan Dupal"]
+  gem.authors = ["Jan Dupal", 'Vít Krchov']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
