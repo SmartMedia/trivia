@@ -3,6 +3,8 @@ module Trivia
     extend ActiveSupport::Concern
 
     included do
+      attr_accessible :answer, :right, :question, :question_id
+
       belongs_to :question
 
       validates_presence_of :answer, :question

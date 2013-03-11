@@ -3,6 +3,8 @@ module Trivia
     extend ActiveSupport::Concern
 
     included do
+      attr_accessible :question, :points, :published_from, :published_to
+
       has_many :answers, :dependent => :destroy
 
       validates_presence_of :question

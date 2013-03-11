@@ -3,6 +3,8 @@ module Trivia
     extend ActiveSupport::Concern
 
     included do
+      attr_accessible :user, :user_id, :answer, :answer_id, :question, :question_id, :points
+
       belongs_to :answer
       belongs_to :user
       belongs_to :question
