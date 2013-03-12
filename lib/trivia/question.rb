@@ -3,7 +3,7 @@ module Trivia
     extend ActiveSupport::Concern
 
     included do
-      attr_accessible :question, :points, :published_from, :published_to
+      attr_accessible :question, :points, :published_from, :published_to, :answers_attributes
 
       has_many :answers, :dependent => :destroy
 
