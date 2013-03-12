@@ -3,7 +3,7 @@ module Trivia
     extend ActiveSupport::Concern
 
     included do
-      attr_accessible :question, :points, :published_from, :published_to
+      attr_accessible :question, :points, :published_from, :published_to, :answers_attributes, :translations_attributes
 
       has_many :answers, :dependent => :destroy
 
@@ -15,6 +15,10 @@ module Trivia
                            .where(t[:published_to].gt(Time.zone.now.to_s(:db)).or(t[:published_to].eq(nil)))}
 
       scope :inactive, lambda{where('published_to < ?', Time.zone.now.to_s(:db))}
+
+      Translation.class_eval do
+        attr_accessible :locale, :value
+      end
     end
 
     module ClassMethods
